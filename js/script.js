@@ -30,12 +30,12 @@ button.addEventListener("click", function (e) {
     e.preventDefault();
     message.innerText = "";
     const guess = textInput.value;
-    //console.log(guess);
+    console.log(guess);
 
     
     textInput.value = "";
     const goodGuess = validate(guess);
-    //console.log(message);
+    makeGuess(goodGuess);
 });
 
 //Create function to check the player's input
@@ -53,6 +53,12 @@ const validate = function (input) {
 };
 
 //Create function to cpture input
-const makeGuess = function (letter) {
-    
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase();
+    if (guessedLetters.includes(guess)) {
+        message.innerText = "Oops! You already tried that. Give it another shot!";
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters);
+    } 
 };
