@@ -10,7 +10,7 @@ const playAgain = document.querySelector(".play-again");
 
 const word = "magnolia"; 
 //Magnolia= starting word to test out game
-
+const guessedLetters = [];
 
 //Create function to update "words-in-progress" paragraph & replace letters with symbol
 placeholder = function (word) {
@@ -28,7 +28,31 @@ placeholder(word);
 //This clears guess box after submitting & logs input in console
 button.addEventListener("click", function (e) {
     e.preventDefault();
-    const guessedLetters = textInput.value;
-    console.log(guessedLetters);
+    message.innerText = "";
+    const guess = textInput.value;
+    //console.log(guess);
+
+    
     textInput.value = "";
+    const goodGuess = validate(guess);
+    //console.log(message);
 });
+
+//Create function to check the player's input
+const validate = function (input) {
+    const acceptedLetter = /[a-zA-Z]/ //Regular expression to only accept values A-Z
+    if (input.length === 0) {
+        message.innerText = "Go ahead and guess any letter! Good luck!";
+    } else if (input.length > 1) {
+        message.innerText = "One letter per guess please 😁";
+    } else if (!input.match(acceptedLetter)) {
+        message.innerText = "Uh oh! That's not a letter! Please only enter letters from A to Z";
+    } else { //Player entered one new letter
+        return input;
+    }
+};
+
+//Create function to cpture input
+const makeGuess = function (letter) {
+    
+};
