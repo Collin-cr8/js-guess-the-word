@@ -12,12 +12,13 @@ const word = "magnolia";
 //Magnolia= starting word to test out game
 const guessedLetters = [];
 
+
 //Create function to update "words-in-progress" paragraph & replace letters with symbol
 placeholder = function (word) {
     const placeholderLetters = [];
     for (const letter of word) {
         console.log(letter);
-        placeholderLetters.push("●")
+        placeholderLetters.push("●");
     }
     inProgress.innerText = placeholderLetters.join("");
 
@@ -60,5 +61,32 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
+        showLetters();
+        wordUpdate(guessedLetters);
     } 
+};
+
+//Create function to SHOW guessed letters in browser
+const showLetters = function () {
+    list.innerHTML = "";
+    for (const letter of guessedLetters) {
+        const listItem = document.createElement("li");
+        listItem.innerText = letter;
+        list.append(listItem);
+    }
+};
+
+//Create function to update word-in-progress
+const wordUpdate = function(guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    const revealWord = [];
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            revealWord.push(letter.toUpperCase());
+        } else {
+            revealWord.push("●");
+        }
+    }
+    inProgress.innerText = revealWord.join("");
 };
