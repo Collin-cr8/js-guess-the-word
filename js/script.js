@@ -89,4 +89,13 @@ const wordUpdate = function(guessedLetters) {
         }
     }
     inProgress.innerText = revealWord.join("");
+    winCheck();
+};
+
+//Create function to check if player won
+const winCheck = function () {
+    if (word.toUpperCase() === inProgress.innerText) {
+        message.classList.add("win");
+        message.innerHTML = `<p class="highlight">You guessed the correct word! Congratulations!</p>`;
+    }
 };
