@@ -12,7 +12,7 @@ let remainingGuesses = 5;
 
 let word = "magnolia"; 
 //Magnolia= starting word to test out game
-const guessedLetters = [];
+let guessedLetters = [];
 
 //Add async function to retrieve random words
 const getWord = async function () {
@@ -144,4 +144,22 @@ const startOver = function () {
     remaining.classList.add("hide");
     list.classList.add("hide");
     playAgain.classList.remove("hide");
-}
+};
+
+//Add click event listner to play again
+playAgain.addEventListener("click", function () {
+    message.classList.remove("win");
+    message.innerText = "";
+    list.innerText = "";
+    span.innerText = `${remainingGuesses} guesses`;
+    guessedLetters = [];
+    remainingGuesses = 5;
+    
+    getWord();
+
+    button.classList.remove("hide");
+    remaining.classList.remove("hide");
+    playAgain.classList.add("hide");
+    list.classList.remove("hide");
+
+});
