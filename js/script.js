@@ -120,6 +120,7 @@ const guessCounter = function(guess) {
 
     if (remainingGuesses === 0) {
         message.innerHTML = `Oh no! You're out of guesses! The word was <span class= "highlight"> ${word} </span>.`;
+        startOver();
     } else if (remainingGuesses === 1) {
         span.innerText = `${remainingGuesses} guess`;
     } else {
@@ -133,6 +134,14 @@ const winCheck = function () {
     if (word.toUpperCase() === inProgress.innerText) {
         message.classList.add("win");
         message.innerHTML = `<p class="highlight">You guessed the correct word! Congratulations!</p>`;
+        startOver();
     }
 };
 
+//Create function to hide and show elements to start over
+const startOver = function () {
+    button.classList.add("hide");
+    remaining.classList.add("hide");
+    list.classList.add("hide");
+    playAgain.classList.remove("hide");
+}
