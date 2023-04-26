@@ -8,14 +8,25 @@ const span = document.querySelector(".remaining span");
 const message = document.querySelector(".message");
 const playAgain = document.querySelector(".play-again");
 
-let remainingGuesses = 8;
+let remainingGuesses = 5;
 
 let word = "magnolia"; 
 //Magnolia= starting word to test out game
 const guessedLetters = [];
 
 //Add async function to retrieve random words
+const getWord = async function () {
+    const res = await fetch ("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+    const words = await res.text();
+    const wordArray = words.split("\n");
+//Grab random word
+    const randomIndex = Math.floor(Math.random() * wordArray.length);
+    word = wordArray[randomIndex].trim();
+    placeholder(word);
+};
 
+//Start Game
+getWord();
 
 
 //Create function to update "words-in-progress" paragraph & replace letters with symbol
@@ -28,7 +39,6 @@ placeholder = function (word) {
     inProgress.innerText = placeholderLetters.join("");
 
 };
-placeholder(word);
 
 //Add event listener for the button 
 //This clears guess box after submitting & logs input in console
