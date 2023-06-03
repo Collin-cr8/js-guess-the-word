@@ -76,8 +76,8 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess);
         console.log(guessedLetters);
-        showLetters();
         guessCounter(guess);
+        showLetters();
         wordInProgressUpdate(guessedLetters);
     } 
 };
@@ -149,17 +149,17 @@ const startOver = function () {
 //Add click event listner to play again
 playAgain.addEventListener("click", function () {
     message.classList.remove("win");
-    message.innerText = "";
-    list.innerText = "";
-    span.innerText = `${remainingGuesses} guesses`;
     guessedLetters = [];
     remainingGuesses = 5;
+    span.innerText = `${remainingGuesses} guesses`;
+    list.innerHTML = "";
+    message.innerText = "";
     
     getWord();
 
     button.classList.remove("hide");
-    remaining.classList.remove("hide");
     playAgain.classList.add("hide");
+    remaining.classList.remove("hide");
     list.classList.remove("hide");
 
 });
